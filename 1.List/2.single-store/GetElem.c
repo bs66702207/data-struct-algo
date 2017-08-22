@@ -2,8 +2,10 @@ Status GetElem(LinkList L, int i, ElemType)
 {
 	int j;
 	LinkList p;
-	p = L;
-	while(p==NULL || j<i) {
+	p = L->next;
+	j = 1;
+
+	while(p!=NULL && j<i) {
 		p = p->next;
 		++j;
 	}
