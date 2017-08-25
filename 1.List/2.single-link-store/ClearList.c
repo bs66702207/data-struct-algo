@@ -3,7 +3,7 @@ Status ClearList(LinkList *L)
 	LinkList p, q;
 	p = (*L)->next;
 	while(p != NULL) {
-		q = q->next;
+		q = p->next;
 		free(p);
 		p = q;
 	}
