@@ -57,3 +57,22 @@ while(i<n) {
 		-- 静态链表, 优点: 插入和删除时，只需要修改游标，不需要移动元素, 从而改进了顺序存储结构中插入和删除操作需要移动大量元素的缺点
 		-- 静态链表, 缺点: 没有解决连续存储分配(数组)带来的表长难以确定的问题, 失去了顺序存储结构随即存取的特性
 	    总的来说, 静态链表其实是为了给没有指针的编程语言设计的一种实现单链表功能的方法。要理解思想，以备不时之需。
+//面试题 快速找到未知长度单链表的中间节点
+	普通方法: 遍历一遍单链表，确定其长度L，然后从头节点出发循环L/2,找到中间节点，算法复杂度O(L+L/2)
+	高级方法：快慢指针，*search和*mid，search的移动速度是mid的两倍，当search指向末尾节点的时候，mid正好就在中间了，标尺的思想
+GetMidNode(LinkList L, ElemType *e)
+{
+	LinkList search, mid;
+	mid = search = L;
+	while(search->next != NULL) {
+		if(search->next->next != NULL) {
+			search = search->next->next;
+			mid = mid->next;
+		} else {
+			search = search->next;
+		}
+	}
+
+	*e = mid->data;
+	return OK;
+}
