@@ -1,9 +1,11 @@
+#include <stdlib.h>
+
 typedef int ElemType;
 
 typedef struct
 {
 	ElemType *base;
-	ElemTYpe *top;
+	ElemType *top;
 	int stackSize;
 } sqStack;
 
@@ -11,9 +13,9 @@ typedef struct
 initStack(sqStack *s) {
 	s->base = (ElemType*)malloc(STACK_INIT_SIZE * sizeof(ElemType));
 	if( !s->base )
-		exit(0);
+		return -1;
 	s->top = s->base;
-	s->stackSize = stackSize;
+	s->stackSize = STACK_INIT_SIZE;
 }
 
 
@@ -21,9 +23,9 @@ initStack(sqStack *s) {
 Push(sqStack *s, ElemType e) {
 	//如果栈满，追加空间
 	if( s->top - s->base >= s->stackSize ) {
-		s->base = (ElemType*)realloc(s->base, (s->stackSize + STACKINCREMENT) * sizeof(ElemType));
+		s->base = (ElemType*)realloc(s->base, (s->stackSize + STACKINGREMENT) * sizeof(ElemType));
 		if( !s->base)
-			exit(0);
+			return -1;
 		s->top = s->base + s->stackSize;//设置栈顶
 		s->stackSize = s->stackSize + STACKINGREMENT;//设置栈的最大容量
 	}
