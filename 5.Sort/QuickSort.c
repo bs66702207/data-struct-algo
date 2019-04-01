@@ -23,6 +23,7 @@ int Partition(int k[], int low, int high)
 		}
 		swap(k, low, high);
 	}
+    k[low] = point;
 
 	return low;
 }
